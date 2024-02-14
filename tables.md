@@ -5,24 +5,35 @@
 ### Description
 
 Describe how Linear Search Algorithm iterates through the list to find an element.
+
 Linear Search essentially goes through the entire list one by one until an element matches with what you're searching for and then it returns the address of the value. If no value is found , the search returns a NULL value.
+
+```python
+for i in range(5):
+   if i == input: return i
+```
 
 > What are the main characteristics of the Linear Search Algorithm in terms of time complexity?
 
-The main characteristic is that Linear Search runs linearly. Since it compares to a max of n items. Where n is the length of the list. This is why the computational complexity for linear search is O(n).
+-  Time complexity is proportional to the space
 
 > Discuss situations where Linear Search would be preferred over binary search.
 
-I can mainly think of situations where if the length of the list is way too long, then Linear Search might not be recommended. However Linear Search can be used in multidimensional arrays whereas Binary Search can only be used in single dimensional arrays. Linear Search also helps lessen the complexity of searching for an element and performs equality comparisons which is more focused on matching the value of the item compared to looking for its order which is done in Binary Search.
+-  binary has to be sorted, linear does not
+-  linear is simple to implement
+-  linear is faster on small data because it
+   doesnt have to jump, slice and check
 
 > How does the efficiency of Linear Search change with the size of the input list?
 
-The efficiency will decrease the more items are inside the list. As i mentioned the computational complexity of Linear Search is O(n) where n represents the length of the list. And as the list grows bigger, the efficiency of the task linearly decreases.
+-  The more data, the longer it takes
+-  The smaller the data, the quicker it takes
 
 > Can you compare and contrast Linear Search with other search algorithms in terms of > time complexity and performance?
 
-Compared to Binary Search, Linear Search's time complexity is just a straight line as the more items are added in the list, the less efficient it is. Whereas in Binary Search the more items are added, the lesser time it might take to complete the search.
-Write to Harvey Magarin
+-  Linear Search's time complexity is just a straight line as the more items are added in the list, the less efficient it is.
+
+-  Whereas in Binary Search the more items are added, the lesser time it might take to complete the search.
 
 # Exercise 2
 
@@ -35,6 +46,30 @@ Implement binary search to find an element in a sorted list
 ### Description
 
 Your are devleoping a phonebook application that allows users to quickly search for contacts by their names. The list of contacts is sorted alphabetically by name. You need to implement a search algorithm that efficiently finds the index of a given contact name in then sorted list.
+
+```cpp
+int binarySearch(const std::vector<int>& arr, int target) {
+    int left = 0; // O(1)
+    int right = arr.size() - 1; // O(1)
+
+    // Continue searching until the left pointer exceeds the right pointer
+    while (left <= right) { // O(log n)
+        // Calculate the middle index
+        int mid = left + (right - left) / 2; // O(1)
+
+        // Check if the middle element is the target
+        if (arr[mid] == target) {
+            return mid; // Target found, return its index - O(1)
+        } else if (arr[mid] < target) {
+            left = mid + 1; // Adjust left pointer to search in the right half - O(1)
+        } else {
+            right = mid - 1; // Adjust right pointer to search in the left half - O(1)
+        }
+    }
+
+    return -1; // Target not found - O(1)
+}
+```
 
 ### Example Scenario
 
@@ -80,3 +115,69 @@ goto this
 # Exercise 3
 
 **O(1) - Constant Time**
+
+### Problem:
+
+Implement a constant-time lookup in a dictionary-like data structure.
+Description:
+
+### Description
+
+You are developing a caching system for a web application. The system needs to quickly retrieve
+user information based on their unique user IDs. Each user ID is associated with various user data
+such as name, email, and account type. You need to implement a data structure that allows
+constant-time lookup of user information given their user ID.
+
+> How does the constant-time lookup data structure improve the efficiency of the caching system?
+
+Enhances efficiency by providing quick access to stored data without iterating through the entire cache.
+
+Achieves O(1) time complexity for lookups.
+
+> What are the key features and operations supported by the dictionary-like data structure?
+
+-  Dictionary-like Structure: Stores key-value pairs.
+-  Insertion: Add a key-value pair.
+-  Lookup: Retrieve a value based on its key.
+-  Deletion: Remove a key-value pair.
+
+> Can you explain how the constant-time lookup operation is achieved in the data structure?
+
+-  Utilizes hashing: The key is hashed to generate an index, providing direct access to the corresponding value.
+
+> Discuss potential trade-offs or limitations of using a constant-time lookup data structure in the caching system.
+
+-  Memory Usage: Hash collisions may lead to increased memory usage.
+-  Hash Function Complexity: Designing an efficient hash function is crucial.
+-  Not Ordered: Elements are not guaranteed to be in a specific order.
+
+> How would you handle cases where the user ID is not found in the data structure?
+
+-  Returns a special value (e.g., None in Python) or throws an exception to indicate that the user ID is not present.
+
+```python
+class ConstantTimeLookup:
+    def __init__(self):
+        self.data = {}
+
+    def insert(self, key, value):
+        self.data[key] = value
+
+    def lookup(self, key):
+        return self.data.get(key, None)
+
+    def delete(self, key):
+        if key in self.data:
+            del self.data[key]
+```
+
+```python
+# Usage
+cache = ConstantTimeLookup()
+cache.insert("user123", "John Doe")
+cache.insert("user456", "Jane Smith")
+
+user_id = "user123"
+result = cache.lookup(user_id)
+print(f"User ID {user_id} found with value: {result}" if result is not None else f"User ID {user_id} not found")
+```
