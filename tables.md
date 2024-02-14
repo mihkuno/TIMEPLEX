@@ -9,8 +9,8 @@ Describe how Linear Search Algorithm iterates through the list to find an elemen
 Linear Search essentially goes through the entire list one by one until an element matches with what you're searching for and then it returns the address of the value. If no value is found , the search returns a NULL value.
 
 ```python
-for i in range(5):
-   if i == input: return i
+for index, value in enumerate([...]):
+   if index == input: return index
 ```
 
 > What are the main characteristics of the Linear Search Algorithm in terms of time complexity?
