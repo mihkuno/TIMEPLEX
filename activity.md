@@ -9,7 +9,7 @@ Describe how Linear Search Algorithm iterates through the list to find an elemen
 Linear Search essentially goes through the entire list one by one until an element matches with what you're searching for and then it returns the address of the value. If no value is found , the search returns a NULL value.
 
 ```python
-for index, value in enumerate([...]):
+for index, value in enumerate([...]):  # O(n)
    if index == input: return index
 ```
 
@@ -89,11 +89,10 @@ Suppose you're building a phonebook application for a large organization with th
 check first
 repeat this:
 check middle if big or small
-slice data
+slice focus side of data
+if found, stop
 goto this
 ```
-
-![alt text](image-2.png)
 
 > How does the sorted nature of the list influence the efficiency of the binary search
 
